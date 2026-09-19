@@ -1,0 +1,187 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "User ID matching auth UID"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Timestamp when profile was created"
+        }
+      },
+      "required": ["uid", "createdAt"]
+    },
+    "Subject": {
+      "title": "Subject",
+      "description": "A college course subject or module",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique subject identifier"
+        },
+        "userId": {
+          "type": "string",
+          "description": "User ID who owns this subject"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the subject (e.g. Operating Systems)"
+        },
+        "code": {
+          "type": "string",
+          "description": "Course code (e.g. CS302)"
+        },
+        "color": {
+          "type": "string",
+          "description": "Color badge class for the subject"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional notes or syllabus description"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Timestamp of creation"
+        }
+      },
+      "required": ["userId", "name", "createdAt"]
+    },
+    "StudyResource": {
+      "title": "StudyResource",
+      "description": "A study document, PDF, Word doc, image, or link",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique resource identifier"
+        },
+        "userId": {
+          "type": "string",
+          "description": "User ID who owns this resource"
+        },
+        "subjectId": {
+          "type": "string",
+          "description": "Subject ID this resource belongs to"
+        },
+        "subjectName": {
+          "type": "string",
+          "description": "Name of the subject"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the study resource"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description or summary"
+        },
+        "resourceType": {
+          "type": "string",
+          "enum": ["pdf", "doc", "image", "link"],
+          "description": "Type of resource"
+        },
+        "fileUrl": {
+          "type": "string",
+          "description": "Storage download URL or external link URL"
+        },
+        "storagePath": {
+          "type": "string",
+          "description": "Firebase Storage path if uploaded"
+        },
+        "fileName": {
+          "type": "string",
+          "description": "Original file name"
+        },
+        "fileSize": {
+          "type": "number",
+          "description": "File size in bytes"
+        },
+        "mimeType": {
+          "type": "string",
+          "description": "File MIME type"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags such as 2 Marks, 16 Marks, Important"
+        },
+        "isFavorite": {
+          "type": "boolean",
+          "description": "Whether bookmarked as favorite"
+        },
+        "uploadDate": {
+          "type": "number",
+          "description": "Timestamp of upload"
+        }
+      },
+      "required": ["userId", "subjectId", "title", "resourceType", "fileUrl", "uploadDate"]
+    },
+    "ShareRecord": {
+      "title": "ShareRecord",
+      "description": "Public or unlisted share record for a single study resource",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique share identifier"
+        },
+        "shareId": {
+          "type": "string",
+          "description": "Share ID matching document ID"
+        },
+        "resourceId": {
+          "type": "string",
+          "description": "ID of the shared study resource"
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "User ID who owns and shared this resource"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Timestamp when the share was created"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether the share link is active"
+        },
+        "resource": {
+          "type": "object",
+          "description": "Snapshot of the shared resource"
+        }
+      },
+      "required": ["shareId", "resourceId", "ownerId", "createdAt", "enabled"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile records"
+    },
+    "/subjects/{subjectId}": {
+      "schema": "Subject",
+      "description": "Subject course collections"
+    },
+    "/resources/{resourceId}": {
+      "schema": "StudyResource",
+      "description": "Study resource files and notes"
+    },
+    "/shares/{shareId}": {
+      "schema": "ShareRecord",
+      "description": "Shared resource metadata records"
+    }
+  }
+}

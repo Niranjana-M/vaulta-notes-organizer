@@ -1,0 +1,6 @@
+{
+  "name": "Vaulta",
+  "description": "A simple, attractive, mobile-friendly college study-resource organizer for PDFs, Word documents, images, and study links.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

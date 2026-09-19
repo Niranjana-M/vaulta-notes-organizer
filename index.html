@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      (function() {
+        function shouldSuppress(args) {
+          for (var i = 0; i < args.length; i++) {
+            var arg = args[i];
+            if (typeof arg === 'string' && (arg.indexOf('[vite]') !== -1 || arg === '[vite]')) return true;
+            if (arg && typeof arg === 'object') {
+              if (typeof arg.message === 'string' && (arg.message.indexOf('[vite]') !== -1 || arg.message.indexOf('send was called before connect') !== -1)) return true;
+              if (typeof arg.stack === 'string' && arg.stack.indexOf('[vite]') !== -1) return true;
+            }
+          }
+          return false;
+        }
+
+        var origError = console.error;
+        console.error = function() {
+          if (shouldSuppress(arguments)) {
+            return;
+          }
+          origError.apply(console, arguments);
+        };
+
+        var origWarn = console.warn;
+        console.warn = function() {
+          if (shouldSuppress(arguments)) {
+            return;
+          }
+          origWarn.apply(console, arguments);
+        };
+
+        window.addEventListener('error', function(event) {
+          if (
+            event &&
+            (
+              (typeof event.message === 'string' && event.message.indexOf('[vite]') !== -1) ||
+              (event.error && typeof event.error.message === 'string' && event.error.message.indexOf('[vite]') !== -1)
+            )
+          ) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(event) {
+          if (
+            event.reason &&
+            (
+              (typeof event.reason === 'string' && event.reason.indexOf('[vite]') !== -1) ||
+              (typeof event.reason.message === 'string' && (event.reason.message.indexOf('[vite]') !== -1 || event.reason.message.indexOf('send was called before connect') !== -1))
+            )
+          ) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }, true);
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vaulta - College Study-Resource Organizer</title>
+    <meta name="description" content="A simple, attractive, mobile-friendly college study-resource organizer for PDFs, Word documents, images, and study links." />
+    <meta property="og:title" content="Vaulta - College Study-Resource Organizer" />
+    <meta property="og:description" content="A simple, attractive, mobile-friendly college study-resource organizer for PDFs, Word documents, images, and study links." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Vaulta" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
