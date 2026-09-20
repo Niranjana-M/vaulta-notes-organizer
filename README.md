@@ -198,7 +198,9 @@ Vaulta provides a clean and student-focused interface for managing academic reso
 
 ### Dashboard
 
-![Vaulta Dashboard](https://raw.githubusercontent.com/Niranjana-M/vaulta-notes-organizer/main/screenshots/dashboard.jpeg)
+<img width="720" height="1384" alt="file-converter" src="https://github.com/user-attachments/assets/3ec59388-0a5d-4a0b-a67a-652730c2fb70" />
+<img width="756" height="1600" alt="dashboard" src="https://github.com/user-attachments/assets/0ddc67e0-6258-4ccc-b4ed-3678ee3e61d8" />
+
 
 ### Study Vault
 
