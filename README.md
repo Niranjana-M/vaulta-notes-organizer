@@ -193,17 +193,28 @@ Authentication secrets
 
 📸 Project Preview
 
-Vaulta provides a clean and student-focused interface for:
 
-Login and authentication
-Dashboard
-Subject management
-Resource uploads
-Resource search
-File viewing
-Favorites
-Profile management
-Sharing resources
+Vaulta provides a clean and student-focused interface for managing academic resources.
+
+### Dashboard
+
+![Vaulta Dashboard](screenshots/dashboard.jpeg)
+
+### Study Vault
+
+![Vaulta Study Vault](screenshots/study-vault.jpeg)
+
+### Upload Resource
+
+![Vaulta Upload Resource](screenshots/upload-resource.jpeg)
+
+### File Converter
+
+![Vaulta File Converter](screenshots/file-converter.jpeg)
+
+### Landing Page
+
+![Vaulta Landing Page](screenshots/vaulta-landing-page.jpeg)
 
 🚧 Project Status
 
