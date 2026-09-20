@@ -80,16 +80,3 @@ Vaulta provides a centralized space where students can organize their academic r
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-Make sure you have installed:
-
-- Node.js
-- npm
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/Niranjana-M/vaulta-notes-organizer.git
